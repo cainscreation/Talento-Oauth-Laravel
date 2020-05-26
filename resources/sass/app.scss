@@ -1,0 +1,18 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+.card-custom{
+    box-shadow: 0px 4px 27px -3px rgba(73,97,231,0.16);
+      border-width:0px;
+      margin:2% 0.5%;
+      background-color: white;
+      padding:3.7% 3%;
+      border-radius: 8px;
+    }
