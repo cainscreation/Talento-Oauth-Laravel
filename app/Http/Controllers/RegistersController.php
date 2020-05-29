@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Organize;
-
+use DB;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 
 class RegistersController extends Controller
 {
-    public function index()
-    {
-        return view('detailedorg');
+    public function index($id)
+    {   $organ_id = Organize::find($id);
+        return view('detailedorg')->with('organ_id',$organ_id);
     }
 
     public function store(Request $request)
@@ -25,25 +25,22 @@ class RegistersController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         $user = new User;
-        
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $organize_id = $request->input('organization');
         $user->password = Hash::make($request->input('password'));
         $user->save();
-        $organize = new Organize;
-        $organize_id = $organize->id;
-        $user->organize()->attach($organize_id);
-        return redirect('/home');
-    }
-
-    public function show($id)
-    {
-        // return $id;
-        $users = Organize::find($users->pivot->id);
-        return view('infoorg')->with('users',$users);
+        $users=$user->id;
+        $data = array('user_id'=>$users,'organize_id'=>$organize_id);
+        DB::table('organize_user')->insert($data);
+        return view('index');
     }
     public function destroy($id)
     {
-        //
+        $users = User::find($id);
+        $users->delete();
+        $user_id = organize()->id;
+        $organize->user()->detach($user_id);
+        return redirect('/home');
     }
 }

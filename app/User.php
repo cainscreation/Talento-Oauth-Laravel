@@ -39,9 +39,9 @@ class User extends Authenticatable
     ];
 
 
-    public function organize():HasMany
+    public function organize()
     {
-        return $this->hasMany(Organize::class);
+        return $this->belongsToMany(Organize::class,'organize_user','user_id','organize_id');
     }
 }
 

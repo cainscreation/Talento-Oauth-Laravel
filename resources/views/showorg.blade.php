@@ -11,9 +11,9 @@
                         </div>
                     @endif
             </div>
-            <div class="text-center">
+            {{-- <div class="text-center">
                 <h3>Welcome back <br><strong>{{ Auth::user()->name }}</strong></h3> 
-            </div>
+            </div> --}}
         </div>
     </div>
 <div class="flex d-flex justify-content-center">

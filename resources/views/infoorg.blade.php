@@ -11,7 +11,7 @@
                     <li>{{$organize->website}}</li>
                     <li>{{$organize->email}}</li>
                     <li>{{$organize->phone}}</li>
-
+                    
 
                     <li><a class="btn btn-dark" href="/organizes/{{$organize->id}}/edit">Edit </a></li>
                     <li class="">
@@ -20,14 +20,47 @@
                         {{Form::hidden('_method', 'DELETE')}}
                         {{Form::bsSubmit('Delete'),['class'=>'btn btn-dark']}}
                       {!! Form::close() !!}
+                    </li><li> <a href="/{{$organize->id}}/user_register" class="btn btn-dark">Add User</a>
                     </li>
-            {{-- @endforeach --}}
 
                 </ul>
             </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created At</th>
+                    {{-- <th scope="col">Delete</th> --}}
+
+                  </tr>
+                </thead>
+
+                <tbody>
+                  @foreach ($organize->user()->get() as $organize) 
+
+                  <tr>
+                    <th scope="row">{{$organize->id}}</th>
+                    <td>{{$organize->name}}</td>
+                    <td>{{$organize->email}}</td>
+                    <td>{{$organize->created_at}}</td>
+                    {{-- <td><li class="">
+                      {!!Form::open(['action' => ['RegistersController@delete', $organize->id],'method' => 'POST'])!!}
+                      {{Form::hidden('_method', 'DELETE')}}
+                      {{Form::bsSubmit('Delete'),['class'=>'btn btn-dark']}}
+                    {!! Form::close() !!}
+                  </li></td> --}}
+                  </tr>
+    @endforeach
+
+                </tbody>
+              </table>
+    {{-- {{$organize->id}} --}}
+    
 
 
-        {{-- <h3>{{$users->name}}</h3> --}}
         </div>
     </div>
+        
 @endsection

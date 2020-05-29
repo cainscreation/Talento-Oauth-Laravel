@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class OrganizesController extends Controller
 {public function __construct(){
-    $this->middleware('auth');
+    $this->middleware('auth',['except'=>'index']);
 }
 
 
@@ -21,6 +21,16 @@ class OrganizesController extends Controller
         $organizes = Organize::orderBy('created_at','asc')->get();
         return view('showorg')->with('organizes',$organizes);
     }
+    public function show($id)
+    {
+        // $organize = Organize::find($id);
+        // $organize = Organize::with('users')-> find($id);
+        $organize = Organize::find($id);
+        // return dd();
+        return view('infoorg')->with('organize',$organize);
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -59,12 +69,9 @@ class OrganizesController extends Controller
     }
 
 
-    public function show($id)
-    {
-        // return $id;
-        $organize = Organize::find($id);
-        return view('infoorg')->with('organize',$organize);
-    }
+
+    
+    
 
 
     public function edit($id)
@@ -110,4 +117,5 @@ class OrganizesController extends Controller
         $organize->user()->detach($user_id);
         return redirect('/home');
     }
+
 }
