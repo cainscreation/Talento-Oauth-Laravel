@@ -6,7 +6,8 @@ use App\Organize;
 use Illuminate\Http\Request;
 
 class OrganizesController extends Controller
-{public function __construct(){
+{
+    public function __construct(){
     $this->middleware('auth',['except'=>'index']);
 }
 
@@ -23,10 +24,8 @@ class OrganizesController extends Controller
     }
     public function show($id)
     {
-        // $organize = Organize::find($id);
-        // $organize = Organize::with('users')-> find($id);
+
         $organize = Organize::find($id);
-        // return dd();
         return view('infoorg')->with('organize',$organize);
 
     }
@@ -56,7 +55,6 @@ class OrganizesController extends Controller
             'email'=>'email'
         ]);
         $organize = new Organize;
-        
         $organize->name = $request->input('name');
         $organize->website = $request->input('website');
         $organize->email = $request->input('email');

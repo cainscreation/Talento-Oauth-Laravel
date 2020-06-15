@@ -12,11 +12,6 @@ class OrganizeUser extends Model
 
 
     protected $table ='organize_user';
-// public static function boot(){
-//     parent::boot();
-//     static::created (function($item){
-//         dd($item);
-//     });
-// }
+
 
 }

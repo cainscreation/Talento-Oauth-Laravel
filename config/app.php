@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         App\Providers\FormServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
 
 

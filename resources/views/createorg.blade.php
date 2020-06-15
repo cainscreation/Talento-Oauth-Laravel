@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.header')
 @section('content')
 <div class="container">
     <h1>Create Listing</h1>
